@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>宇宙銀行ATM｜チャッピー＆サリー</title>
+
+  <link rel="icon" href="icon.jpg" />
+  <link rel="apple-touch-icon" href="icon.jpg" />
+  <meta name="theme-color" content="#0a1030" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="宇宙銀行ATM" />
+
   <style>
     :root{
       --bg1:#050712;
@@ -373,10 +380,10 @@
     }
 
     .rewardControls{
-  padding:16px 12px 12px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+      padding:16px 12px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
 
     .rewardControlBtn{
@@ -391,9 +398,15 @@
       font-weight:800;
     }
 
-    .rewardControlBtn.gold{
-      border-color:rgba(247,215,122,.35);
-      background:linear-gradient(180deg, rgba(247,215,122,.16), rgba(247,215,122,.08));
+    .rewardControlLinks{
+      text-align:center;
+      font-size:12px;
+      opacity:0.82;
+    }
+
+    .rewardControlLinks span{
+      cursor:pointer;
+      user-select:none;
     }
 
     .sparkle{
@@ -431,7 +444,7 @@
       100%{ transform:translateY(360px) rotate(18deg); opacity:0; }
     }
 
-        .mainRewardWrap{
+    .mainRewardWrap{
       position:absolute;
       left:50%;
       top:50%;
@@ -440,15 +453,15 @@
       z-index:20;
       animation:rewardPop .45s ease-out forwards;
       text-align:center;
-        }
+    }
 
     .mainRewardImage{
-  width:90%;
-  max-width:220px;
-  height:auto;
-  display:block;
-  margin:0 auto;
-  border-radius:20px;
+      width:90%;
+      max-width:220px;
+      height:auto;
+      display:block;
+      margin:0 auto;
+      border-radius:20px;
     }
 
     .mainRewardTitle{
@@ -471,21 +484,6 @@
     @keyframes rewardPop{
       0%{ opacity:0; transform:translate(-50%, -44%) scale(.88); }
       100%{ opacity:1; transform:translate(-50%, -50%) scale(1); }
-    }
-
-    .toast{
-      position:absolute;
-      left:50%;
-      bottom:14px;
-      transform:translateX(-50%);
-      padding:10px 14px;
-      border-radius:999px;
-      font-size:12px;
-      background:rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.12);
-      backdrop-filter:blur(8px);
-      white-space:nowrap;
-      z-index:30;
     }
 
     .modalBack{
@@ -623,13 +621,15 @@
     .historyList{
       padding:8px 0;
     }
-.todayIncome{
-  text-align:center;
-  font-size:14px;
-  color:#8b5a2b;
-  margin:10px 0;
-  font-weight:bold;
-}
+
+    .todayIncome{
+      text-align:center;
+      font-size:14px;
+      color:#8b5a2b;
+      margin:10px 0;
+      font-weight:bold;
+    }
+
     .historyItem{
       display:flex;
       justify-content:space-between;
@@ -701,18 +701,11 @@
       .top-actions{ gap:6px; }
       .pill{ font-size:11px; padding:8px 9px; }
     }
-.mainRewardValue{
-  margin-top:6px;
-  font-size:13px;
-  color:var(--gold);
-  font-weight:800;
-}
 
-.buyAvailable{
-  box-shadow:0 0 12px gold;
-  transform:scale(1.05);
-}
-    
+    .buyAvailable{
+      box-shadow:0 0 12px gold;
+      transform:scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -729,7 +722,7 @@
       <div class="top-actions">
         <button class="pill gold" id="btnPassbookTop">通帳を見る</button>
         <button class="pill gold" id="btnShop">購入</button>
-        <button class="pill gold" id="btnHint">暗証番号ヒント</button>
+        <button class="pill gold" id="btnHomeTop">HOME</button>
       </div>
     </div>
 
@@ -782,7 +775,7 @@
 
         <div class="hintLine" id="hintLine">
           ・暗証番号は4桁<br>
-          ・4桁入力して ↩ を押すと受け取り開始
+          ・好きな4桁を入力して ↩ を押すと受け取り開始
         </div>
       </div>
 
@@ -801,6 +794,11 @@
 
         <div class="rewardControls">
           <button class="rewardControlBtn" id="btnRewardAgain">もう一回受け取る</button>
+          <div class="rewardControlLinks">
+            <span id="btnNotice">注意事項</span>
+            &nbsp;｜&nbsp;
+            <span id="btnReset">リセット</span>
+          </div>
         </div>
       </div>
     </div>
@@ -808,17 +806,6 @@
     <div class="card" id="collectionCard">
       <h3 style="margin:6px 6px 10px;">宇宙コレクション</h3>
       <div id="collectionGrid" class="collectionGrid"></div>
-    </div>
-  </div>
-
-  <div class="modalBack" id="modalBack">
-    <div class="modal">
-      <h3>暗証番号ヒント</h3>
-      <p>ヒント：しあわせの合図∞が並んでる数字🐾<br>例：8888</p>
-      <div class="modalBtns">
-        <button id="modalClose">とじる</button>
-        <button class="gold" id="modalSet8888">8888 を入れる</button>
-      </div>
     </div>
   </div>
 
@@ -842,13 +829,13 @@
           <div class="passbookBalanceLabel">あなたの残高</div>
           <div class="passbookBalance" id="passbookBalance">¥0</div>
           <div class="todayIncome">
-  ✨本日の宇宙入金<br>
-  <span id="todayIncome">+0</span>
+            ✨本日の宇宙入金<br>
+            <span id="todayIncome">+0</span>
           </div>
           <div class="passbookSub">
             受け取った金額はここに蓄積されるよ🐾<br>
             同じスマホ・同じブラウザなら残高は残りやすいよ✨
-          </div>
+       </div>
         </div>
       </div>
 
@@ -870,21 +857,21 @@
       atm: "images/cosmic_bank_atm.png",
 
       moneyRewards: [
-  { src: "images/cosmic_reward_10000yen.png", title: "1万円受け取り増した〜💴", value: 10000, chance: 35 },
-  { src: "images/cosmic_reward_1million.png", title: "100万円受け取り増した〜💰", value: 1000000, chance: 25 },    
-  { src: "images/cosmic_reward_2million.png", title: "200万円受け取り増した〜💰", value: 2000000, chance: 25 },
-  { src: "images/cosmic_reward_100million.png", title: "1億円受け取り増した〜✨", value: 100000000, chance: 15 },
-  { src: "images/cosmic_reward_500million.png", title: "5億円受け取り増した〜🌈", value: 500000000, chance: 10 },
-  { src: "images/cosmic_happiness_coin.png", title: "しあわせコイン受け取り増した〜🪙", value: 5000000, chance: 10 },
-  { src: "images/cosmic_infinite_reward.png", title: "∞受け取り増した〜♾️", value: 888888888, chance: 5 }
-],
+        { src: "images/cosmic_reward_10000yen.png", title: "1万円受け取り増した〜💴", value: 10000, chance: 35 },
+        { src: "images/cosmic_reward_1million.png", title: "100万円受け取り増した〜💰", value: 1000000, chance: 25 },
+        { src: "images/cosmic_reward_2million.png", title: "200万円受け取り増した〜💰", value: 2000000, chance: 25 },
+        { src: "images/cosmic_reward_100million.png", title: "1億円受け取り増した〜✨", value: 100000000, chance: 15 },
+        { src: "images/cosmic_reward_500million.png", title: "5億円受け取り増した〜🌈", value: 500000000, chance: 10 },
+        { src: "images/cosmic_happiness_coin.png", title: "しあわせコイン受け取り増した〜🪙", value: 5000000, chance: 10 },
+        { src: "images/cosmic_infinite_reward.png", title: "∞受け取り増した〜♾️", value: 888888888, chance: 5 }
+      ],
       bonusRewards: [
         { src:"images/chappy_sally_gold_train.png", title:"黄金トレインが到着〜🚂", value:5000000, chance:12 },
         { src:"images/chappy_sally_gold_cart.png", title:"ゴールドトロッコが来たよ🛤️", value:5000000, chance:12 },
         { src:"images/cosmic_abundance_boost.png", title:"黄金の金庫OPEN🌈", value:5000000, chance:10 },
         { src:"images/cosmic_atm_with_chappy.png", title:"チャッピーがATM応援中🐶", value:5000000, chance:10 },
         { src:"images/cosmic_bank_office.png", title:"宇宙銀行頭取に会う💫", value:888888888, chance:3 },
-       { src:"images/cosmic_devil_dog.png", title:"邪鬼が逃げた🌈厄祓い完了！", value:888888888, chance:3, chestDrop:true },
+        { src:"images/cosmic_devil_dog.png", title:"邪鬼が逃げた🌈厄祓い完了！", value:888888888, chance:3, chestDrop:true },
         { src:"images/cosmic_galaxy_merry_go_round.png", title:"しあわせ銀河メリーゴーランド🎠", value:5000000, chance:6 },
         { src:"images/cosmic_golden_fountain.png", title:"黄金の泉がわいてるよ⛲", value:5000000, chance:6 },
         { src:"images/cosmic_golden_gift.png", title:"宇宙ギフトが届いたよ🎁", value:50000000, chance:5 },
@@ -897,7 +884,6 @@
       ]
     };
 
-    const VALID_PINS = ["8888"];
     const BALANCE_KEY = "spaceBankBalance_v1";
     const HISTORY_KEY = "spaceBankHistory_v1";
     const COLLECTION_KEY = "spaceBankCollection_v1";
@@ -911,7 +897,7 @@
       { id:"house", name:"しあわせハウス", price:1000000000, src:"images/chappy_sally_house.png" },
       { id:"building", name:"ビル", price:10000000000, src:"images/cosmic_city_tower_building.png" }
     ];
-    
+
     const app = document.getElementById("app");
     const heroImg = document.getElementById("heroImg");
     const heroLabel = document.getElementById("heroLabel");
@@ -933,14 +919,12 @@
     const rewardSub = document.getElementById("rewardSub");
     const btnRewardAgain = document.getElementById("btnRewardAgain");
     const btnBackATM = document.getElementById("btnBackATM");
+    const btnNotice = document.getElementById("btnNotice");
+    const btnReset = document.getElementById("btnReset");
 
-    const btnHint = document.getElementById("btnHint");
+    const btnHomeTop = document.getElementById("btnHomeTop");
     const btnPassbookTop = document.getElementById("btnPassbookTop");
     const btnShop = document.getElementById("btnShop");
-
-    const modalBack = document.getElementById("modalBack");
-    const modalClose = document.getElementById("modalClose");
-    const modalSet8888 = document.getElementById("modalSet8888");
 
     const passbookBack = document.getElementById("passbookBack");
     const passbookClose = document.getElementById("passbookClose");
@@ -1001,13 +985,20 @@
     }
 
     function getTodayIncome(){
-  const list = getHistory();
-  const today = new Date().toLocaleDateString("ja-JP");
-  return list
-    .filter(item => item.value > 0 && item.date && item.date.startsWith(today))
-    .reduce((sum, item) => sum + item.value, 0);
-}
-    
+      const list = getHistory();
+      const today = new Date().toLocaleDateString("ja-JP");
+      return list
+        .filter(item => item.value > 0 && item.date && item.date.startsWith(today))
+        .reduce((sum, item) => sum + item.value, 0);
+    }
+
+    function updateTodayIncome(){
+      const todayIncomeEl = document.getElementById("todayIncome");
+      if(todayIncomeEl){
+        todayIncomeEl.textContent = "+" + formatYen(getTodayIncome());
+      }
+    }
+
     function getCollection(){
       try{
         return JSON.parse(localStorage.getItem(COLLECTION_KEY) || "[]");
@@ -1076,26 +1067,30 @@
       });
 
       renderCollection();
+      updateTodayIncome();
       alert("✨宇宙銀行ATM✨\n\n" + item.name + " を購入しました💰");
-      }
+    }
+
     function openShop(){
-  const itemsText = shopItems
-    .map((item, index) => `${index + 1}. ${item.name}  ${formatYen(item.price)}`)
-    .join("\n");
+      const itemsText = shopItems
+        .map((item, index) =>
+          `${index + 1}. ${item.name}\n　 ${formatYen(item.price)}`
+        )
+        .join("\n\n");
 
-  const num = prompt(
-    "購入番号を入力してね\n\n" + itemsText
-  );
+      const num = prompt(
+        "宇宙銀行ショッピング🌈\n欲しいアイテムの番号を入力してね\n\n" + itemsText
+      );
 
-  const item = shopItems[Number(num) - 1];
+      const item = shopItems[Number(num) - 1];
 
-  if(item){
-    buyItem(item);
-  }
-}
-
+      if(item){
+        buyItem(item);
+      }
+    }
     function renderPassbook(){
       passbookBalance.textContent = formatYen(getBalance());
+      updateTodayIncome();
 
       const list = getHistory();
       historyList.innerHTML = "";
@@ -1132,9 +1127,7 @@
       renderPassbook();
       passbookBack.style.display = "flex";
     }
-document.getElementById("todayIncome").textContent =
-  "+" + formatYen(getTodayIncome());
-    
+
     function closePassbook(){
       passbookBack.style.display = "none";
     }
@@ -1149,6 +1142,7 @@ document.getElementById("todayIncome").textContent =
       rewardTimers.forEach(t => clearTimeout(t));
       rewardTimers = [];
     }
+
     function setMode(next){
       clearTimers();
       mode = next;
@@ -1167,7 +1161,7 @@ document.getElementById("todayIncome").textContent =
       if(mode === "atm"){
         app.classList.remove("gateMode");
         heroLabel.style.display = "block";
-        setHero(IMG.atm, "宇宙銀行ATM", "暗証番号を入力してね。");
+        setHero(IMG.atm, "宇宙銀行ATM", "好きな4桁を入力してね。");
         gateAction.style.display = "none";
         atmWrap.style.display = "block";
         rewardStage.style.display = "none";
@@ -1192,15 +1186,7 @@ document.getElementById("todayIncome").textContent =
       }
       pinDots.textContent = dots.join(" ");
       btnEnterReward.style.opacity = pin.length === 4 ? "1" : ".55";
-      hintLine.innerHTML = "・暗証番号は4桁<br>・4桁入力して ↩ を押すと受け取り開始";
-    }
-
-    function openHint(){
-      modalBack.style.display = "flex";
-    }
-
-    function closeHint(){
-      modalBack.style.display = "none";
+      hintLine.innerHTML = "・暗証番号は4桁<br>・好きな4桁を入力して ↩ を押すと受け取り開始";
     }
 
     function clearRewardArea(){
@@ -1261,17 +1247,18 @@ document.getElementById("todayIncome").textContent =
 
       }else{
 
-  title.textContent = reward.title;
-  value.textContent = "+" + formatYen(reward.value);
+        title.textContent = reward.title;
+        value.textContent = "+" + formatYen(reward.value);
 
-  if(reward.chestDrop){
-    setTimeout(() => {
-      img.src = cacheBust("images/cosmic_Takarabako.png");
-      title.textContent = "邪鬼が宝箱を落として行った！";
-      value.textContent = "+" + formatYen(7777777);
-      addToBalance(7777777, "邪鬼が宝箱を落として行った！");
-    }, 2200);
-  }
+        if(reward.chestDrop){
+          setTimeout(() => {
+            img.src = cacheBust("images/cosmic_Takarabako.png");
+            title.textContent = "邪鬼が宝箱を落として行った！";
+            value.textContent = "+" + formatYen(7777777);
+            addToBalance(7777777, "邪鬼が宝箱を落として行った！");
+            updateTodayIncome();
+          }, 2200);
+        }
 
       }
 
@@ -1307,11 +1294,6 @@ document.getElementById("todayIncome").textContent =
         return;
       }
 
-      if(!VALID_PINS.includes(pin)){
-        hintLine.innerHTML = "・その暗証番号は違うみたい";
-        return;
-      }
-
       playRewardSequence();
     }
 
@@ -1327,6 +1309,7 @@ document.getElementById("todayIncome").textContent =
 
       addToBalance(moneyReward.value, moneyReward.title);
       addToBalance(bonusReward.value, bonusReward.title);
+      updateTodayIncome();
 
       rewardTimers.push(setTimeout(() => {
         moneyRainStage();
@@ -1341,6 +1324,25 @@ document.getElementById("todayIncome").textContent =
         rewardSub.textContent = "さらにごほうびが届いたよ✨";
         showRewardImage(bonusReward);
       }, 4200));
+    }
+
+    function showNotice(){
+      alert(
+        "✨ご利用について✨\n\n" +
+        "このアプリは豊かさを楽しく体験するための無料エンタメアプリです。\n" +
+        "実際のお金の入金や金融サービスではありません。\n\n" +
+        "販売・転載・改変しての再配布はご遠慮ください。\n" +
+        "本アプリの利用によって生じた結果について責任を負いかねます。"
+      );
+    }
+
+    function resetBank(){
+      if(confirm("宇宙銀行口座をリセットしますか？")){
+        localStorage.removeItem(BALANCE_KEY);
+        localStorage.removeItem(HISTORY_KEY);
+        localStorage.removeItem(COLLECTION_KEY);
+        location.reload();
+      }
     }
 
     btnEnter.addEventListener("click", () => {
@@ -1366,21 +1368,6 @@ document.getElementById("todayIncome").textContent =
       }
     });
 
-    btnHint.addEventListener("click", openHint);
-    modalClose.addEventListener("click", closeHint);
-
-    modalBack.addEventListener("click", (e) => {
-      if(e.target === modalBack){
-        closeHint();
-      }
-    });
-
-    modalSet8888.addEventListener("click", () => {
-      pin = "8888";
-      updatePinUI();
-      closeHint();
-    });
-
     btnBackATM.addEventListener("click", () => {
       setMode("atm");
     });
@@ -1398,6 +1385,13 @@ document.getElementById("todayIncome").textContent =
         closePassbook();
       }
     });
+
+    btnHomeTop.addEventListener("click", () => {
+      setMode("gate");
+    });
+
+    btnNotice.addEventListener("click", showNotice);
+    btnReset.addEventListener("click", resetBank);
 
     btnCopyBalance.addEventListener("click", async () => {
       const text = "宇宙銀行の残高は " + formatYen(getBalance()) + " だよ✨";
@@ -1418,12 +1412,12 @@ document.getElementById("todayIncome").textContent =
     btnShop.addEventListener("click", () => {
       openShop();
     });
-
     heroImg.addEventListener("error", () => {
       console.warn("HERO画像が見つからないかも：", heroImg.src);
     });
 
     renderCollection();
+    updateTodayIncome();
     setMode("gate");
   </script>
 </body>
