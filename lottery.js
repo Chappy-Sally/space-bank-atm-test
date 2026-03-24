@@ -1,4 +1,5 @@
 function playLottery(){
+  alert("宝くじボタン押されたよ");
 
   const results = [
     { text:"ハズレ…🐶", value:0, src:"images/kuji_syonbori.png", chance:40 },
@@ -57,5 +58,9 @@ if(result.value > 0){
   addToBalance(result.value, "宇宙宝くじ当選");
   updateTodayIncome();
 }
-document.getElementById("btnLottery")
-  .addEventListener("click", playLottery);
+window.addEventListener("load", () => {
+  const btn = document.getElementById("btnLottery");
+  if (btn) {
+    btn.addEventListener("click", playLottery);
+  }
+});
