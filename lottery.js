@@ -2,7 +2,7 @@
 
 const LOTTERY_PRICE = 10000000;          // 1回の購入金額
 const CARRY_KEY = "spaceBankCarry_v1";
-const CARRY_ADD = 100000;             // ハズレ1回ごとに増える額
+const CARRY_ADD = 10000000;             // ハズレ1回ごとに増える額
 
 function getCarryOver(){
   return Number(localStorage.getItem(CARRY_KEY) || 0);
