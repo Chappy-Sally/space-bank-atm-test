@@ -13,7 +13,6 @@ function playLottery(){
   setMode("reward");
   area.innerHTML = "";
 
-  // 🌟 ガラガラ表示
   const wrap = document.createElement("div");
   wrap.className = "mainRewardWrap";
 
@@ -29,10 +28,8 @@ function playLottery(){
   wrap.appendChild(title);
   area.appendChild(wrap);
 
-  // 🎯結果抽選
   const result = getRandomReward(results);
 
-  // ⏰1.5秒後に結果表示
   setTimeout(() => {
 
     img.classList.remove("garagara");
@@ -54,3 +51,11 @@ function playLottery(){
 
   }, 1500);
 }
+
+if(result.value > 0){
+  value.textContent = "+" + formatYen(result.value);
+  addToBalance(result.value, "宇宙宝くじ当選");
+  updateTodayIncome();
+}
+document.getElementById("btnLottery")
+  .addEventListener("click", playLottery);
