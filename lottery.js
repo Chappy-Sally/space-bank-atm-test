@@ -1,6 +1,6 @@
 // 🎯 宇宙宝くじ（購入して抽選 / キャリーオーバー貯まる版）
 
-const LOTTERY_PRICE = 10000;          // 1回の購入金額
+const LOTTERY_PRICE = 10000000;          // 1回の購入金額
 const CARRY_KEY = "spaceBankCarry_v1";
 const CARRY_ADD = 100000;             // ハズレ1回ごとに増える額
 
@@ -48,21 +48,21 @@ function playLottery(){
     {
       type: "win",
       text: "ワクワク賞✨",
-      value: 30000,
+      value: 3000000,
       src: "images/kuji_wakuwaku.png",
       chance: 25
     },
     {
       type: "win",
       text: "やったー当選🎉",
-      value: 1000000,
+      value: 100000000,
       src: "images/kuji_yattar.png",
       chance: 20
     },
     {
       type: "win",
       text: "BIG当選💰",
-      value: 100000000,
+      value: 1000000000,
       src: "images/kuji_big.png",
       chance: 10
     },
