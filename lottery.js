@@ -87,7 +87,7 @@ function playLottery(){
 
   // 画像
   const img = document.createElement("img");
-  img.src = "images/kuji_kounu.jpg";
+  img.src = "images/kuji_kounu.png";
   img.className = "mainRewardImage";
 
   // タイトル
