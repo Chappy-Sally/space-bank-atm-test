@@ -33,7 +33,7 @@ function playLottery(){
 
   updateTodayIncome();
 
-  // 現在のキャリー額
+  // 現在のキャリーオーバー額
   let carry = getCarryOver();
 
   // 🎁結果リスト
@@ -81,36 +81,48 @@ function playLottery(){
   setMode("reward");
   area.innerHTML = "";
 
-  // 🎰ガラガラ演出
+  // ラッパー
   const wrap = document.createElement("div");
   wrap.className = "mainRewardWrap";
 
+  // 画像
   const img = document.createElement("img");
-  img.src = "images/kuji_garapon.png";
-  img.className = "mainRewardImage garagara";
+  img.src = "images/kuji_kounu.jpg";
+  img.className = "mainRewardImage";
 
+  // タイトル
   const title = document.createElement("div");
   title.className = "mainRewardTitle";
-  title.textContent = "🎯ガラガラガラ…";
+  title.textContent = "宝くじ購入しました✨";
+
+  // 金額表示
+  const value = document.createElement("div");
+  value.className = "mainRewardValue";
+  value.textContent = "-" + formatYen(LOTTERY_PRICE) + " 🎫";
 
   wrap.appendChild(img);
   wrap.appendChild(title);
+  wrap.appendChild(value);
   area.appendChild(wrap);
 
   // 🎯抽選
   const result = getRandomReward(results);
 
-  // ⏰1.5秒後に結果表示
+  // ⏰購入表示 → ガラガラへ
+  setTimeout(() => {
+    img.src = "images/kuji_garapon.png";
+    img.className = "mainRewardImage garagara";
+    title.textContent = "🎯ガラガラガラ…";
+    value.textContent = "抽選中…";
+  }, 900);
+
+  // ⏰結果表示
   setTimeout(() => {
 
     img.classList.remove("garagara");
     img.src = result.src;
     title.textContent = result.text;
 
-    const value = document.createElement("div");
-    value.className = "mainRewardValue";
-
-    // ハズレ
     if(result.type === "lose"){
       carry += CARRY_ADD;
       setCarryOver(carry);
@@ -126,7 +138,6 @@ function playLottery(){
       });
     }
 
-    // 当たり
     if(result.type === "win"){
       const totalWin = result.value + carry;
 
@@ -141,13 +152,11 @@ function playLottery(){
         value.textContent = "+" + formatYen(result.value);
       }
 
-      // キャリー解放後はリセット
+      // キャリー解放後は0に戻す
       setCarryOver(0);
     }
 
-    wrap.appendChild(value);
-
-  }, 1500);
+  }, 2400);
 }
 
 
