@@ -1,6 +1,8 @@
-function playLottery(){
-  alert("宝くじボタン押されたよ");
+// 🎯 宇宙宝くじ
 
+function playLottery(){
+
+  // 🎁 結果リスト
   const results = [
     { text:"ハズレ…🐶", value:0, src:"images/kuji_syonbori.png", chance:40 },
     { text:"ワクワク賞✨", value:30000, src:"images/kuji_wakuwaku.png", chance:25 },
@@ -11,9 +13,11 @@ function playLottery(){
 
   const area = document.getElementById("rewardArea");
 
+  // 🎬 画面切り替え
   setMode("reward");
   area.innerHTML = "";
 
+  // 🎰 ガラガラ演出
   const wrap = document.createElement("div");
   wrap.className = "mainRewardWrap";
 
@@ -29,8 +33,10 @@ function playLottery(){
   wrap.appendChild(title);
   area.appendChild(wrap);
 
+  // 🎯 抽選ロジック
   const result = getRandomReward(results);
 
+  // ⏰ 1.5秒後に結果表示
   setTimeout(() => {
 
     img.classList.remove("garagara");
@@ -38,12 +44,13 @@ function playLottery(){
 
     title.textContent = result.text;
 
-    let value = document.createElement("div");
+    const value = document.createElement("div");
     value.className = "mainRewardValue";
 
     if(result.value > 0){
       value.textContent = "+" + formatYen(result.value);
       addToBalance(result.value, "宇宙宝くじ当選");
+      updateTodayIncome(); // ←これで通帳も更新✨
     }else{
       value.textContent = "またチャレンジ🐾";
     }
@@ -53,14 +60,13 @@ function playLottery(){
   }, 1500);
 }
 
-if(result.value > 0){
-  value.textContent = "+" + formatYen(result.value);
-  addToBalance(result.value, "宇宙宝くじ当選");
-  updateTodayIncome();
-}
+
+// 🎯 ボタンと接続（超重要）
 window.addEventListener("load", () => {
   const btn = document.getElementById("btnLottery");
   if (btn) {
     btn.addEventListener("click", playLottery);
+  } else {
+    console.warn("btnLottery 見つからない🐶");
   }
 });
