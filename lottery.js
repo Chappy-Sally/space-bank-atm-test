@@ -40,7 +40,7 @@ function playLottery(){
   const results = [
     {
       type: "lose",
-      text: "💫キャリーオーバー発生中🌈\nお金が解放されたがっている🤣",
+      text: "💫キャリーオーバー発生中🌈\nお金が解放したがっている🤣",
       value: 0,
       src: "images/kuji_over.png",
       chance: 40
