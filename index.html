@@ -706,6 +706,25 @@
       box-shadow:0 0 12px gold;
       transform:scale(1.05);
     }
+    
+/* 🌸桜エフェクト */
+.sakura{
+  position: fixed;
+  top: -20px;
+  font-size: 20px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+.sakura::before{
+  content: "🌸";
+}
+
+@keyframes fall{
+  to{
+    transform: translateY(100vh);
+  }
+}
   </style>
 </head>
 <body>
@@ -1275,7 +1294,11 @@
       wrap.appendChild(title);
       wrap.appendChild(value);
       rewardArea.appendChild(wrap);
-    }
+    // 🌸桜シリーズだけ花びら
+if(reward.src && reward.src.includes("hanami")){
+  showSakura();
+  }
+}
 
     function getRandomReward(list){
       if(!list || !list.length) return null;
