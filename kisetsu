@@ -28,4 +28,46 @@ function showSakura(){
   { src:"images/ucyu_sotugyo.png", title:"おめでとうのエネルギー🌸✨", value:8000000, chance:3 }
 );
 
+/* 🌸桜エフェクト */
+.sakura{
+  position: fixed;
+  top: -20px;
+  font-size: 20px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+.sakura::before{
+  content: "🌸";
+}
+
+
+ { src:"images/ucyu_hanami.png", title:"宇宙お花見だよ🌸", value:5000000, chance:5 },
+        { src:"images/ucyu_hanami_fuji.png", title:"宇宙富士山とお花見🗻🌸", value:7000000, chance:4 },
+        { src:"images/ucyu_hanami_ucyu.png", title:"宇宙満開の桜🌌🌸", value:6000000, chance:4 },
+        { src:"images/ucyu_nyugaku.png", title:"新しいはじまりだよ🎒✨", value:3000000, chance:6 },
+        { src:"images/ucyu_sotugyo.png", title:"おめでとうのエネルギー🌸✨", value:8000000, chance:3 },
+
+
+/* 🌸桜エフェクト */
+.sakura{
+  position: fixed;
+  top: -20px;
+  font-size: 20px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+.sakura::before{
+  content: "🌸";
+}
+
+
+ { src:"images/ucyu_hanami.png", title:"宇宙お花見だよ🌸", value:5000000, chance:5 },
+        { src:"images/ucyu_hanami_fuji.png", title:"宇宙富士山とお花見🗻🌸", value:7000000, chance:4 },
+        { src:"images/ucyu_hanami_ucyu.png", title:"宇宙満開の桜🌌🌸", value:6000000, chance:4 },
+        { src:"images/ucyu_nyugaku.png", title:"新しいはじまりだよ🎒✨", value:3000000, chance:6 },
+        { src:"images/ucyu_sotugyo.png", title:"おめでとうのエネルギー🌸✨", value:8000000, chance:3 },
+
+
 
