@@ -1,4 +1,4 @@
-// 金額カードのあとに出るごほうび一覧
+// 金額カードのあとに出るごほうび一覧✨
 
 IMG.bonusRewards.push(
   { src:"images/chappy_sally_gold_train.png", title:"黄金トレインが到着〜🚂", value:5000000, chance:12 },
