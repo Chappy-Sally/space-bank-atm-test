@@ -1215,7 +1215,44 @@
         rewardTimers.push(timer);
       }
     }
+function showGreenEffect(){
+  for(let i=0; i<20; i++){
+    const leaf = document.createElement("div");
+    leaf.className = "sakura"; // ←そのまま使ってOK
+    leaf.innerHTML = "🍀";
 
+    leaf.style.left = Math.random()*100 + "vw";
+    leaf.style.animationDuration = (2 + Math.random()*3) + "s";
+
+    document.body.appendChild(leaf);
+
+    setTimeout(() => leaf.remove(), 4000);
+  }
+}
+
+function showKoinobori(){
+  const fish = document.createElement("div");
+  fish.innerHTML = "🎏";
+  fish.style.position = "fixed";
+  fish.style.left = "-50px";
+  fish.style.top = "40%";
+  fish.style.fontSize = "40px";
+  fish.style.zIndex = "999";
+
+  document.body.appendChild(fish);
+
+  let x = -50;
+  const move = setInterval(()=>{
+    x += 5;
+    fish.style.left = x + "px";
+
+    if(x > window.innerWidth){
+      clearInterval(move);
+      fish.remove();
+    }
+  }, 30);
+}
+    
     function showRewardImage(reward){
       if(!reward) return;
 
