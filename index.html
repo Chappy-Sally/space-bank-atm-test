@@ -21,7 +21,6 @@
       --text:#eef2ff;
       --muted:#b7c0ffcc;
       --gold:#f7d77a;
-      --gold2:#c89b31;
       --danger:#7c3c4b;
       --shadow:0 18px 50px rgba(0,0,0,.42);
       --radius:24px;
@@ -57,7 +56,7 @@
       justify-content:space-between;
       gap:8px;
       padding:11px 12px;
-      background: linear-gradient(180deg, #101833cc, #0a0f22cc);
+      background:linear-gradient(180deg, #101833cc, #0a0f22cc);
       border:1px solid var(--line);
       border-radius:999px;
       box-shadow:var(--shadow);
@@ -338,7 +337,6 @@
       color:var(--muted);
       line-height:1.5;
     }
-
     .rewardStage{
       display:none;
       margin-top:10px;
@@ -471,7 +469,7 @@
       color:var(--text);
       text-shadow:0 2px 8px rgba(0,0,0,.35);
       line-height:1.45;
-      white-space: pre-line;
+      white-space:pre-line;
     }
 
     .mainRewardValue{
@@ -597,6 +595,14 @@
       word-break:break-all;
     }
 
+    .todayIncome{
+      text-align:center;
+      font-size:14px;
+      color:#8b5a2b;
+      margin:10px 0;
+      font-weight:bold;
+    }
+
     .passbookSub{
       margin-top:8px;
       font-size:12px;
@@ -621,14 +627,6 @@
 
     .historyList{
       padding:8px 0;
-    }
-
-    .todayIncome{
-      text-align:center;
-      font-size:14px;
-      color:#8b5a2b;
-      margin:10px 0;
-      font-weight:bold;
     }
 
     .historyItem{
@@ -696,36 +694,34 @@
       display:none;
     }
 
+    .buyAvailable{
+      box-shadow:0 0 12px gold;
+      transform:scale(1.05);
+    }
+
+    .sakura{
+      position:fixed;
+      top:-20px;
+      font-size:20px;
+      animation:fall linear forwards;
+      pointer-events:none;
+      z-index:9999;
+    }
+
+    .sakura::before{
+      content:"🌸";
+    }
+
+    @keyframes fall{
+      to{ transform:translateY(100vh); }
+    }
+
     @media (max-width:430px){
       .rewardArea{ height:260px; }
       .mainRewardWrap{ width:min(70%, 240px); }
       .top-actions{ gap:6px; }
       .pill{ font-size:11px; padding:8px 9px; }
     }
-
-    .buyAvailable{
-      box-shadow:0 0 12px gold;
-      transform:scale(1.05);
-    }
-    
-/* 🌸桜エフェクト */
-.sakura{
-  position: fixed;
-  top: -20px;
-  font-size: 20px;
-  animation: fall linear forwards;
-  pointer-events: none;
-}
-
-.sakura::before{
-  content: "🌸";
-}
-
-@keyframes fall{
-  to{
-    transform: translateY(100vh);
-  }
-}
   </style>
 </head>
 <body>
@@ -776,7 +772,6 @@
             <div class="small">暗証番号（4桁）</div>
             <div class="pin" id="pinView">----</div>
           </div>
-
           <button class="enterBtn" id="btnEnterReward" aria-label="受け取り開始">↩</button>
         </div>
 
@@ -856,7 +851,7 @@
           <div class="passbookSub">
             受け取った金額はここに蓄積されるよ🐾<br>
             同じスマホ・同じブラウザなら残高は残りやすいよ✨
-       </div>
+          </div>
         </div>
       </div>
 
@@ -878,18 +873,19 @@
       atm: "images/cosmic_bank_atm.png",
 
       moneyRewards: [
-        { src: "images/cosmic_reward_10000yen.png", title: "1万円受け取り増した〜💴", value: 10000, chance: 35 },
-        { src: "images/cosmic_reward_1million.png", title: "100万円受け取り増した〜💰", value: 1000000, chance: 25 },
-        { src: "images/cosmic_reward_2million.png", title: "200万円受け取り増した〜💰", value: 2000000, chance: 25 },
-        { src: "images/cosmic_bank_5million.png", title: "500万受取り増した〜✨", value: 5000000, chance: 25 },
-        { src: "images/cosmic_bank_10million.png", title: "1000万受取り増した〜💫", value: 10000000, chance: 25 },
-        { src: "images/cosmic_reward_100million.png", title: "1億円受け取り増した〜✨", value: 100000000, chance: 15 },
-        { src: "images/cosmic_reward_500million.png", title: "5億円受け取り増した〜🌈", value: 500000000, chance: 10 },
-        { src: "images/cosmic_bank_5billion.png", title: "50億円受取り増した〜🌈", value: 5000000000, chance: 10 },
-        { src: "images/cosmic_happiness_coin.png", title: "しあわせコイン受け取り増した〜🪙", value: 5000000, chance: 10 },
-        { src: "images/cosmic_infinite_reward.png", title: "∞受け取り増した〜♾️", value: 888888888, chance: 5 }
+        { src:"images/cosmic_reward_10000yen.png", title:"1万円受け取り増した〜💴", value:10000, chance:35 },
+        { src:"images/cosmic_reward_1million.png", title:"100万円受け取り増した〜💰", value:1000000, chance:25 },
+        { src:"images/cosmic_reward_2million.png", title:"200万円受け取り増した〜💰", value:2000000, chance:25 },
+        { src:"images/cosmic_bank_5million.png", title:"500万受取り増した〜✨", value:5000000, chance:25 },
+        { src:"images/cosmic_bank_10million.png", title:"1000万受取り増した〜💫", value:10000000, chance:25 },
+        { src:"images/cosmic_reward_100million.png", title:"1億円受け取り増した〜✨", value:100000000, chance:15 },
+        { src:"images/cosmic_reward_500million.png", title:"5億円受け取り増した〜🌈", value:500000000, chance:10 },
+        { src:"images/cosmic_bank_5billion.png", title:"50億円受取り増した〜🌈", value:5000000000, chance:10 },
+        { src:"images/cosmic_happiness_coin.png", title:"しあわせコイン受け取り増した〜🪙", value:5000000, chance:10 },
+        { src:"images/cosmic_infinite_reward.png", title:"∞受け取り増した〜♾️", value:888888888, chance:5 }
       ],
-      
+
+      bonusRewards: []
     };
 
     const BALANCE_KEY = "spaceBankBalance_v1";
@@ -1096,6 +1092,7 @@
         buyItem(item);
       }
     }
+
     function renderPassbook(){
       passbookBalance.textContent = formatYen(getBalance());
       updateTodayIncome();
@@ -1220,6 +1217,8 @@
     }
 
     function showRewardImage(reward){
+      if(!reward) return;
+
       rewardArea.innerHTML = "";
 
       const sparkle = document.createElement("div");
@@ -1241,7 +1240,6 @@
       value.className = "mainRewardValue";
 
       if(reward.src.includes("cosmic_bank_office.png")){
-
         img.src = cacheBust("images/chappy_sally_invitation.png");
         title.textContent = "🌈宇宙銀行から招待状が届きました🌈";
         value.textContent = "頭取ルームへご案内します✨";
@@ -1252,9 +1250,7 @@
           title.textContent = "🌈宇宙銀行頭取に招待されました🌈 ご財増しました✨";
           value.textContent = "888,888,888,888";
         }, 1500);
-
       }else{
-
         title.textContent = reward.title;
         value.textContent = "+" + formatYen(reward.value);
 
@@ -1267,34 +1263,29 @@
             updateTodayIncome();
           }, 2200);
         }
-
       }
 
       wrap.appendChild(img);
       wrap.appendChild(title);
       wrap.appendChild(value);
       rewardArea.appendChild(wrap);
-    // 🌸桜シリーズだけ花びら
-if(reward.src && reward.src.includes("ucyu")){
-  showSakura();
-  }
-}
 
-// 🌸桜エフェクト
-function showSakura(){
-  for(let i=0; i<20; i++){
-    const petal = document.createElement("div");
-    petal.className = "sakura";
+      if(reward.src && reward.src.includes("ucyu")){
+        showSakura();
+      }
+    }
 
-    petal.style.left = Math.random()*100 + "vw";
-    petal.style.animationDuration = (2 + Math.random()*3) + "s";
+    function showSakura(){
+      for(let i = 0; i < 20; i++){
+        const petal = document.createElement("div");
+        petal.className = "sakura";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 4000);
+      }
+    }
 
-    document.body.appendChild(petal);
-
-    setTimeout(() => petal.remove(), 4000);
-  }
-}    
-    
     function getRandomReward(list){
       if(!list || !list.length) return null;
 
@@ -1334,8 +1325,14 @@ function showSakura(){
       const moneyReward = getRandomReward(IMG.moneyRewards);
       const bonusReward = getRandomReward(IMG.bonusRewards);
 
-      addToBalance(moneyReward.value, moneyReward.title);
-      addToBalance(bonusReward.value, bonusReward.title);
+      if(moneyReward){
+        addToBalance(moneyReward.value, moneyReward.title);
+      }
+
+      if(bonusReward){
+        addToBalance(bonusReward.value, bonusReward.title);
+      }
+
       updateTodayIncome();
 
       rewardTimers.push(setTimeout(() => {
@@ -1372,10 +1369,7 @@ function showSakura(){
       }
     }
 
-    btnEnter.addEventListener("click", () => {
-      setMode("atm");
-    });
-
+    btnEnter.addEventListener("click", () => setMode("atm"));
     btnEnterReward.addEventListener("click", startRewardFlow);
 
     keypad.addEventListener("click", (e) => {
@@ -1395,16 +1389,9 @@ function showSakura(){
       }
     });
 
-    btnBackATM.addEventListener("click", () => {
-      setMode("atm");
-    });
-
-    btnRewardAgain.addEventListener("click", () => {
-      playRewardSequence();
-    });
-
+    btnBackATM.addEventListener("click", () => setMode("atm"));
+    btnRewardAgain.addEventListener("click", playRewardSequence);
     btnPassbookTop.addEventListener("click", openPassbook);
-
     passbookClose.addEventListener("click", closePassbook);
 
     passbookBack.addEventListener("click", (e) => {
@@ -1413,10 +1400,7 @@ function showSakura(){
       }
     });
 
-    btnHomeTop.addEventListener("click", () => {
-      setMode("gate");
-    });
-
+    btnHomeTop.addEventListener("click", () => setMode("gate"));
     btnNotice.addEventListener("click", showNotice);
     btnReset.addEventListener("click", resetBank);
 
@@ -1425,20 +1409,15 @@ function showSakura(){
       try{
         await navigator.clipboard.writeText(text);
         btnCopyBalance.textContent = "残高をコピーしたよ";
-        setTimeout(() => {
-          btnCopyBalance.textContent = "残高をチェック";
-        }, 1600);
+        setTimeout(() => btnCopyBalance.textContent = "残高をチェック", 1600);
       }catch(err){
         btnCopyBalance.textContent = "残高は " + formatYen(getBalance());
-        setTimeout(() => {
-          btnCopyBalance.textContent = "残高をチェック";
-        }, 1600);
+        setTimeout(() => btnCopyBalance.textContent = "残高をチェック", 1600);
       }
     });
 
-    btnShop.addEventListener("click", () => {
-      openShop();
-    });
+    btnShop.addEventListener("click", openShop);
+
     heroImg.addEventListener("error", () => {
       console.warn("HERO画像が見つからないかも：", heroImg.src);
     });
@@ -1447,7 +1426,8 @@ function showSakura(){
     updateTodayIncome();
     setMode("gate");
   </script>
-    <script src="bonus_rewards.js"></script>
-<script src="lottery.js"></script>
+
+  <script src="bonus_rewards.js"></script>
+  <script src="lottery.js"></script>
 </body>
 </html>
