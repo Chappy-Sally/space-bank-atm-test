@@ -23,7 +23,7 @@ function showKoinobori(){
 
   fish.style.position = "fixed";
   fish.style.left = "-70px";
-  fish.style.top = "28%";
+  fish.style.top = "48%";
   fish.style.fontSize = "44px";
   fish.style.zIndex = "9999";
   fish.style.pointerEvents = "none";
@@ -32,7 +32,7 @@ function showKoinobori(){
   document.body.appendChild(fish);
 
   let x = -70;
-  let baseY = 28;
+  let baseY = 48;
   let t = 0;
 
   const move = setInterval(() => {
