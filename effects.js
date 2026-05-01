@@ -17,4 +17,38 @@ function showGreenEffect(){
 // 🎏兜・こいのぼりエフェクト
 function showKoinobori(){
   const fish = document.createElement("div");
-  fish.text
+  fish.className = "koinoboriEffect";
+  fish.textContent = "🎏";
+
+  document.body.appendChild(fish);
+
+  let x = -60;
+  const move = setInterval(() => {
+    x += 6;
+    fish.style.left = x + "px";
+
+    if(x > window.innerWidth){
+      clearInterval(move);
+      fish.remove();
+    }
+  }, 30);
+}
+
+// 🎏 or 🍀 判定
+function showSeasonEffect(reward){
+  if(!reward || !reward.src) return;
+
+  const src = reward.src.toLowerCase();
+
+  // 🎏こいのぼり・兜
+  if(src.includes("kabuto") || src.includes("koinobori")){
+    showKoinobori();
+    return;
+  }
+
+  // 🍀新緑・母の日
+  if(src.includes("mother") || src.includes("shinryoku")){
+    showGreenEffect();
+    return;
+  }
+}
