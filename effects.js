@@ -24,6 +24,7 @@ function showKoinobori(){
   fish.style.position = "fixed";
   fish.style.left = "-70px";
   fish.style.top = "48%";
+  fish.style.opacity = "0.9";
   fish.style.fontSize = "44px";
   fish.style.zIndex = "9999";
   fish.style.pointerEvents = "none";
