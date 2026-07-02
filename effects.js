@@ -1,6 +1,8 @@
 // 🍀新緑・母の日エフェクト
 function showGreenEffect(){
+
   for(let i=0;i<24;i++){
+
     const el=document.createElement("div");
     el.className="greenEffect";
     el.textContent="🍀";
@@ -10,14 +12,19 @@ function showGreenEffect(){
     el.style.fontSize=(18+Math.random()*12)+"px";
 
     document.body.appendChild(el);
+
     setTimeout(()=>el.remove(),6000);
+
   }
+
 }
+
 
 // 🎏こいのぼり
 function showKoinobori(){
 
   const fish=document.createElement("div");
+
   fish.className="koinoboriEffect";
   fish.textContent="🎏";
 
@@ -45,8 +52,10 @@ function showKoinobori(){
     fish.style.transform=`rotate(${Math.sin(t)*8}deg)`;
 
     if(x>window.innerWidth+80){
+
       clearInterval(move);
       fish.remove();
+
     }
 
   },30);
@@ -54,37 +63,97 @@ function showKoinobori(){
 }
 
 
-// ⭐星キラキラ
+// ⭐七夕用
 function showStarRain(){
 
   for(let i=0;i<35;i++){
 
     const star=document.createElement("div");
+
     star.textContent=Math.random()>0.7?"🌠":"⭐";
 
     star.style.position="fixed";
     star.style.left=Math.random()*100+"vw";
     star.style.top="-40px";
     star.style.fontSize=(18+Math.random()*18)+"px";
-    star.style.opacity=".95";
     star.style.zIndex="9999";
     star.style.pointerEvents="none";
 
     star.animate([
+
       {
-        transform:"translateY(0px) scale(.7)"
+        transform:"translateY(0px) scale(.7)",
+        opacity:0
       },
+
       {
-        transform:`translate(${Math.random()*120-60}px,${window.innerHeight+80}px) scale(1.2)`
+        transform:`translate(${Math.random()*120-60}px,${window.innerHeight+80}px) scale(1.2)`,
+        opacity:1
       }
+
     ],{
+
       duration:2500+Math.random()*2500,
       easing:"ease-in"
+
     });
 
     document.body.appendChild(star);
 
     setTimeout(()=>star.remove(),5200);
+
+  }
+
+}
+
+
+// 🌠夜空専用
+function showShootingStar(){
+
+  for(let i=0;i<8;i++){
+
+    setTimeout(()=>{
+
+      const star=document.createElement("div");
+
+      star.textContent="🌠";
+
+      star.style.position="fixed";
+      star.style.left=(10+Math.random()*80)+"vw";
+      star.style.top=(5+Math.random()*25)+"vh";
+      star.style.fontSize=(26+Math.random()*18)+"px";
+      star.style.zIndex="9999";
+      star.style.pointerEvents="none";
+
+      star.animate([
+
+        {
+          transform:"translate(0,0) scale(.6)",
+          opacity:0
+        },
+
+        {
+          transform:"translate(-320px,220px) scale(1.2)",
+          opacity:1
+        },
+
+        {
+          transform:"translate(-520px,360px) scale(.8)",
+          opacity:0
+        }
+
+      ],{
+
+        duration:1800,
+        easing:"ease-out"
+
+      });
+
+      document.body.appendChild(star);
+
+      setTimeout(()=>star.remove(),1900);
+
+    },i*450);
 
   }
 
@@ -99,6 +168,7 @@ function showFireworks(){
     setTimeout(()=>{
 
       const fire=document.createElement("div");
+
       fire.textContent="🎆";
 
       fire.style.position="fixed";
@@ -106,19 +176,33 @@ function showFireworks(){
       fire.style.top=(10+Math.random()*60)+"vh";
       fire.style.fontSize=(40+Math.random()*28)+"px";
       fire.style.opacity="0";
-
       fire.style.zIndex="9999";
       fire.style.pointerEvents="none";
 
-      document.body.appendChild(fire);
-
       fire.animate([
-        {transform:"scale(.2)",opacity:0},
-        {transform:"scale(1.4)",opacity:1},
-        {transform:"scale(1)",opacity:0}
+
+        {
+          transform:"scale(.2)",
+          opacity:0
+        },
+
+        {
+          transform:"scale(1.4)",
+          opacity:1
+        },
+
+        {
+          transform:"scale(1)",
+          opacity:0
+        }
+
       ],{
+
         duration:1300
+
       });
+
+      document.body.appendChild(fire);
 
       setTimeout(()=>fire.remove(),1300);
 
@@ -129,12 +213,13 @@ function showFireworks(){
 }
 
 
-// 🫧海
+// 🌊海
 function showBubbleEffect(){
 
   for(let i=0;i<28;i++){
 
     const b=document.createElement("div");
+
     b.textContent=Math.random()>0.75?"🐬":"🫧";
 
     b.style.position="fixed";
@@ -145,15 +230,20 @@ function showBubbleEffect(){
     b.style.pointerEvents="none";
 
     b.animate([
+
       {
         transform:"translateY(0)"
       },
+
       {
         transform:`translate(${Math.random()*100-50}px,-${window.innerHeight+120}px)`
       }
+
     ],{
+
       duration:3500+Math.random()*2000,
       easing:"ease-out"
+
     });
 
     document.body.appendChild(b);
@@ -173,6 +263,7 @@ function showLanternEffect(){
   for(let i=0;i<22;i++){
 
     const el=document.createElement("div");
+
     el.textContent=icons[Math.floor(Math.random()*icons.length)];
 
     el.style.position="fixed";
@@ -183,14 +274,19 @@ function showLanternEffect(){
     el.style.pointerEvents="none";
 
     el.animate([
+
       {
         transform:"translateY(0) rotate(0deg)"
       },
+
       {
         transform:`translate(${Math.random()*80-40}px,${window.innerHeight+80}px) rotate(${Math.random()*180-90}deg)`
       }
+
     ],{
+
       duration:5000+Math.random()*2000
+
     });
 
     document.body.appendChild(el);
@@ -222,8 +318,14 @@ function showSeasonEffect(reward){
   }
 
   // 🎋七夕
-  if(src.includes("tanabata") || src.includes("starrynight")){
+  if(src.includes("tanabata")){
     showStarRain();
+    return;
+  }
+
+  // 🌌夜空
+  if(src.includes("starry_night")){
+    showShootingStar();
     return;
   }
 
