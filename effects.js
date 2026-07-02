@@ -107,53 +107,47 @@ function showStarRain(){
 }
 
 
-// 🌠夜空専用
+// 🌠夜空専用・見えやすい流れ星
 function showShootingStar(){
 
-  for(let i=0;i<8;i++){
+  for(let i=0;i<5;i++){
 
     setTimeout(()=>{
 
       const star=document.createElement("div");
-
       star.textContent="🌠";
 
       star.style.position="fixed";
-      star.style.left=(10+Math.random()*80)+"vw";
-      star.style.top=(5+Math.random()*25)+"vh";
-      star.style.fontSize=(26+Math.random()*18)+"px";
-      star.style.zIndex="9999";
+      star.style.left="85vw";
+      star.style.top=(10+Math.random()*35)+"vh";
+      star.style.fontSize=(34+Math.random()*16)+"px";
+      star.style.zIndex="99999";
       star.style.pointerEvents="none";
-
-      star.animate([
-
-        {
-          transform:"translate(0,0) scale(.6)",
-          opacity:0
-        },
-
-        {
-          transform:"translate(-320px,220px) scale(1.2)",
-          opacity:1
-        },
-
-        {
-          transform:"translate(-520px,360px) scale(.8)",
-          opacity:0
-        }
-
-      ],{
-
-        duration:1800,
-        easing:"ease-out"
-
-      });
+      star.style.opacity="1";
 
       document.body.appendChild(star);
 
-      setTimeout(()=>star.remove(),1900);
+      star.animate([
+        {
+          transform:"translate(0,0) scale(1)",
+          opacity:1
+        },
+        {
+          transform:"translate(-75vw,45vh) scale(1.25)",
+          opacity:1
+        },
+        {
+          transform:"translate(-95vw,60vh) scale(.8)",
+          opacity:0
+        }
+      ],{
+        duration:2200,
+        easing:"ease-out"
+      });
 
-    },i*450);
+      setTimeout(()=>star.remove(),2300);
+
+    },i*650);
 
   }
 
@@ -324,10 +318,10 @@ function showSeasonEffect(reward){
   }
 
   // 🌌夜空
-  if(src.includes("starry_night")){
+if(src.includes("starry")){
     showShootingStar();
     return;
-  }
+}
 
   // 🎆花火
   if(src.includes("fireworks")){
