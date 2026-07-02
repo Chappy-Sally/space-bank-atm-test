@@ -110,7 +110,7 @@ function showStarRain(){
 // 🌠夜空専用・見えやすい流れ星
 function showShootingStar(){
 
-  for(let i=0;i<5;i++){
+  for(let i=0;i<1;i++){
 
     setTimeout(()=>{
 
